@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=vivustore_dev;encrypt=false</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">123456</property>
+
+        <!-- JDBC connection pool -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+        <!-- Show SQL statements -->
+        <property name="show_sql">true</property>
+
+        <!-- Schema update strategy -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Entity mappings -->
+        <mapping class="fa.training.entities.Category"/>
+        <mapping class="fa.training.entities.Supplier"/>
+        <mapping class="fa.training.entities.Product"/>
+        <mapping class="fa.training.entities.ProductDetails"/>
+        <mapping class="fa.training.entities.Customer"/>
+        <mapping class="fa.training.entities.Order"/>
+        <mapping class="fa.training.entities.OrderProduct"/>
+
+        <!-- Bạn không cần mapping EntityBase vì nó là @MappedSuperclass -->
+    </session-factory>
+</hibernate-configuration>
