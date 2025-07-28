@@ -1,10 +1,9 @@
 package fa.training.test;
 
-import fa.training.entities.Category;
-import fa.training.repositories.CategoryRepository;
-import fa.training.repositories.impl.CategoryRepositoryImpl;
-import fa.training.services.CategoryService;
-import fa.training.services.impl.CategoryServiceImpl;
+import fa.training.repositories.CustomerRepository;
+import fa.training.repositories.impl.CustomerRepositoryImpl;
+import fa.training.services.CustomerService;
+import fa.training.services.impl.CustomerServiceImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,19 +16,19 @@ public class VivuStore {
     public static void main(String[] args) {
         SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         Session session = sessionFactory.openSession();
-        CategoryRepository categoryRepository = new CategoryRepositoryImpl(sessionFactory);
-        CategoryService categoryService = new CategoryServiceImpl(categoryRepository);
+
+        CustomerRepository customerRepository = new CustomerRepositoryImpl(session);
+        CustomerService customerService = new CustomerServiceImpl(customerRepository);
 
         try {
             session.beginTransaction();
-            categoryService.createCategory("Áo sơ mi", "Các loại áo sơ mi cao cấp");
-            Category category = new Category("Áo thun", "Các loại áo thun thời trang");
-            session.persist(category);
-            session.getTransaction().commit();
 
-            System.out.println("Category saved successfully with ID: " + category.getId());
+            CustomterTest customterTest = new CustomterTest();
+            customterTest.testAddCustomer(session, customerService );
+
+            session.getTransaction().commit();
         } catch (Exception e) {
-            logger.error("Lỗi khi lưu category", e);
+            logger.error("", e);
             session.getTransaction().rollback();
         } finally {
             session.close();

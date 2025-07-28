@@ -7,11 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "categories", schema = "dbo", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})}, indexes = {
         @Index(name = "idx_category_name", columnList = "name")
 })
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Category extends EntityBase {
 
     @Column(name = "name", nullable = false, length = 100, columnDefinition = "nvarchar(100)")
     private String name;
@@ -25,14 +21,6 @@ public class Category {
     }
 
     public Category() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
