@@ -31,6 +31,5 @@
         <mapping class="fa.training.entities.Order"/>
         <mapping class="fa.training.entities.OrderProduct"/>
 
-        <!-- Bạn không cần mapping EntityBase vì nó là @MappedSuperclass -->
     </session-factory>
 </hibernate-configuration>
